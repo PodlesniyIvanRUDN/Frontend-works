@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo-Client</title>
+    <script>
+        async function  loadTodoItems() {
+            const response = await fetch('http://localhost:3000/api/todos');
+            const data = await response.json();
+            console.log(data);
+        }
+        async function createToDoItem() {
+            fetch('http://localhost:3000/api/todos',{
+                method: 'POST',
+                headers: {'Content-Type' : 'application/json'},
+                body: JSON.stringify({
+                    name:'GO TO GYM',
+                    owner:'Nigga'
+                })
+            })
+        }
+        async function getToDoItem() {
+            const response = await fetch('http://localhost:3000/api/todos/1723293142174');
+            const data = await response.json();
+            console.log(data);
+        }
+        async function markAsDone(){
+            const response = await fetch('http://localhost:3000/api/todos/1723293142174',{
+                method: 'PATCH',
+                headers: {'Content-Type' : 'application/json'},
+                body: JSON.stringify({done: true})
+            })
+            const data = await response.json();
+            console.log(data);
+        }
+        markAsDone();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
